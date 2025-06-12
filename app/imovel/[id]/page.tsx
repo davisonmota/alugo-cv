@@ -7,70 +7,391 @@ import Link from "next/link"
 import { PropertyGallery } from "@/components/property-gallery"
 import { ContactForm } from "@/components/contact-form"
 
-// Dados mockados para demonstração
-const propertyData = {
-  id: "1",
-  title: "Apartamento Moderno no Centro",
-  type: "Apartamento",
-  price: 2500,
-  location: {
-    neighborhood: "Centro",
-    city: "São Paulo",
-    state: "SP",
-  },
-  details: {
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 65,
-    parking: 1,
-  },
-  description:
-    "Apartamento completamente reformado em excelente localização. Próximo ao metrô, shopping centers e principais avenidas da cidade. Ideal para profissionais que trabalham no centro.",
-  amenities: ["Portaria 24h", "Elevador", "Área de lazer", "Academia"],
-  images: [
-    "/placeholder.svg?height=400&width=600",
-    "/placeholder.svg?height=400&width=600",
-    "/placeholder.svg?height=400&width=600",
-    "/placeholder.svg?height=400&width=600",
-    "/placeholder.svg?height=400&width=600",
-  ],
-  owner: {
-    name: "Maria Silva",
-    avatar: "/placeholder.svg?height=60&width=60",
-    phone: "(11) 99999-9999",
-    memberSince: "2022",
-    rating: 4.8,
-    totalProperties: 5,
-  },
-  reviews: [
-    {
-      id: 1,
-      tenant: "João Santos",
-      avatar: "/placeholder.svg?height=40&width=40",
-      rating: 5,
-      date: "Dezembro 2023",
-      comment: "Excelente apartamento! Muito bem localizado e a proprietária é super atenciosa. Recomendo!",
+// Atualizar os dados mockados para usar as imagens reais baseado no ID
+const getPropertyData = (id: string) => {
+  const properties = {
+    "1": {
+      id: "1",
+      title: "Apartamento Moderno no Centro",
+      type: "Apartamento",
+      price: 2500,
+      location: {
+        neighborhood: "Centro",
+        city: "São Paulo",
+        state: "SP",
+      },
+      details: {
+        bedrooms: 2,
+        bathrooms: 1,
+        area: 65,
+        parking: 1,
+      },
+      description:
+        "Apartamento completamente reformado em excelente localização. Próximo ao metrô, shopping centers e principais avenidas da cidade. Ideal para profissionais que trabalham no centro.",
+      amenities: ["Portaria 24h", "Elevador", "Área de lazer", "Academia"],
+      images: [
+        "/img-anuncios/Apartamento moderno no centro/apartamentocentro1.jpg",
+        "/img-anuncios/Apartamento moderno no centro/apartamentocentro2.jpg",
+        "/img-anuncios/Apartamento moderno no centro/apartamentocentro3.jpg",
+        "/img-anuncios/Apartamento moderno no centro/apartamentocentro4.jpg",
+        "/img-anuncios/Apartamento moderno no centro/apartamentocentro5.png",
+      ],
+      owner: {
+        name: "Maria Silva",
+        avatar: "/placeholder-user.jpg",
+        phone: "(11) 99999-9999",
+        memberSince: "2022",
+        rating: 4.8,
+        totalProperties: 5,
+      },
+      reviews: [
+        {
+          id: 1,
+          tenant: "João Santos",
+          avatar: "/placeholder-user.jpg",
+          rating: 5,
+          date: "Dezembro 2023",
+          comment: "Excelente apartamento! Muito bem localizado e a proprietária é super atenciosa. Recomendo!",
+        },
+        {
+          id: 2,
+          tenant: "Ana Costa",
+          avatar: "/placeholder-user.jpg",
+          rating: 4,
+          date: "Outubro 2023",
+          comment: "Apartamento bem conservado e em ótima localização. Apenas o banheiro poderia ser um pouco maior.",
+        },
+        {
+          id: 3,
+          tenant: "Carlos Oliveira",
+          avatar: "/placeholder-user.jpg",
+          rating: 5,
+          date: "Agosto 2023",
+          comment:
+            "Morei por 2 anos e foi uma ótima experiência. Proprietária muito responsável e apartamento impecável.",
+        },
+      ],
     },
-    {
-      id: 2,
-      tenant: "Ana Costa",
-      avatar: "/placeholder.svg?height=40&width=40",
-      rating: 4,
-      date: "Outubro 2023",
-      comment: "Apartamento bem conservado e em ótima localização. Apenas o banheiro poderia ser um pouco maior.",
+    "2": {
+      id: "2",
+      title: "Casa Espaçosa em Condomínio",
+      type: "Casa",
+      price: 3200,
+      location: {
+        neighborhood: "Vila Madalena",
+        city: "São Paulo",
+        state: "SP",
+      },
+      details: {
+        bedrooms: 3,
+        bathrooms: 2,
+        area: 120,
+        parking: 2,
+      },
+      description:
+        "Casa ampla em condomínio fechado com área de lazer completa. Ideal para famílias que buscam segurança e conforto.",
+      amenities: ["Piscina", "Quadra", "Playground", "Segurança 24h"],
+      images: [
+        "/img-anuncios/Casa espaçosa em condomínio/casacondominio1.jpg",
+        "/img-anuncios/Casa espaçosa em condomínio/casacondominio2.jpg",
+        "/img-anuncios/Casa espaçosa em condomínio/casacondominio3.jpg",
+        "/img-anuncios/Casa espaçosa em condomínio/casacondominio4jpg.jpg",
+        "/img-anuncios/Casa espaçosa em condomínio/casacondominio5.jpg",
+        "/img-anuncios/Casa espaçosa em condomínio/casacondominio6.png",
+        "/img-anuncios/Casa espaçosa em condomínio/casacondominio7.png",
+        "/img-anuncios/Casa espaçosa em condomínio/casacondominio8.jpg",
+      ],
+      owner: {
+        name: "Roberto Santos",
+        avatar: "/placeholder-user.jpg",
+        phone: "(11) 98888-8888",
+        memberSince: "2021",
+        rating: 4.9,
+        totalProperties: 3,
+      },
+      reviews: [
+        {
+          id: 1,
+          tenant: "Família Silva",
+          avatar: "/placeholder-user.jpg",
+          rating: 5,
+          date: "Janeiro 2024",
+          comment: "Casa perfeita para nossa família! Condomínio muito seguro e bem localizado.",
+        },
+      ],
     },
-    {
-      id: 3,
-      tenant: "Carlos Oliveira",
-      avatar: "/placeholder.svg?height=40&width=40",
-      rating: 5,
-      date: "Agosto 2023",
-      comment: "Morei por 2 anos e foi uma ótima experiência. Proprietária muito responsável e apartamento impecável.",
+    "3": {
+      id: "3",
+      title: "Kitnet Próxima ao Metrô",
+      type: "Kitnet",
+      price: 1200,
+      location: {
+        neighborhood: "Liberdade",
+        city: "São Paulo",
+        state: "SP",
+      },
+      details: {
+        bedrooms: 1,
+        bathrooms: 1,
+        area: 25,
+        parking: 0,
+      },
+      description:
+        "Kitnet compacta e funcional, ideal para estudantes ou profissionais solteiros. Localizada a poucos metros da estação de metrô.",
+      amenities: ["Próximo ao metrô", "Mobiliada", "Internet incluída"],
+      images: [
+        "/img-anuncios/Kintet proxima ao metro/kitnet1.jpg",
+        "/img-anuncios/Kintet proxima ao metro/kitnet2.jpeg",
+        "/img-anuncios/Kintet proxima ao metro/kitnet3.png",
+      ],
+      owner: {
+        name: "Carlos Yamamoto",
+        avatar: "/placeholder-user.jpg",
+        phone: "(11) 97777-7777",
+        memberSince: "2023",
+        rating: 4.2,
+        totalProperties: 2,
+      },
+      reviews: [
+        {
+          id: 1,
+          tenant: "Pedro Oliveira",
+          avatar: "/placeholder-user.jpg",
+          rating: 4,
+          date: "Novembro 2023",
+          comment: "Ótima localização, muito próximo do metrô. Ideal para quem trabalha no centro.",
+        },
+      ],
     },
-  ],
+    "4": {
+      id: "4",
+      title: "Loft Industrial Reformado",
+      type: "Loft",
+      price: 2800,
+      location: {
+        neighborhood: "Pinheiros",
+        city: "São Paulo",
+        state: "SP",
+      },
+      details: {
+        bedrooms: 1,
+        bathrooms: 1,
+        area: 80,
+        parking: 1,
+      },
+      description:
+        "Loft com design industrial moderno, pé direito alto e muito charme. Perfeito para quem aprecia arquitetura diferenciada.",
+      amenities: ["Design moderno", "Pé direito alto", "Área gourmet"],
+      images: ["/img-anuncios/Loft industrial reformado/loft1.jpg"],
+      owner: {
+        name: "Ana Beatriz",
+        avatar: "/placeholder-user.jpg",
+        phone: "(11) 96666-6666",
+        memberSince: "2022",
+        rating: 4.6,
+        totalProperties: 1,
+      },
+      reviews: [
+        {
+          id: 1,
+          tenant: "Lucas Ferreira",
+          avatar: "/placeholder-user.jpg",
+          rating: 5,
+          date: "Setembro 2023",
+          comment: "Loft incrível! Design único e muito bem localizado. Recomendo!",
+        },
+      ],
+    },
+    "5": {
+      id: "5",
+      title: "Apartamento com Vista",
+      type: "Apartamento",
+      price: 3500,
+      location: {
+        neighborhood: "Moema",
+        city: "São Paulo",
+        state: "SP",
+      },
+      details: {
+        bedrooms: 3,
+        bathrooms: 2,
+        area: 95,
+        parking: 2,
+      },
+      description:
+        "Apartamento com vista panorâmica da cidade, acabamentos de primeira qualidade e localização privilegiada em Moema.",
+      amenities: ["Vista panorâmica", "Varanda", "Academia", "Piscina"],
+      images: [
+        "/img-anuncios/Apartamento com vista/apartamentovista1.jpg",
+        "/img-anuncios/Apartamento com vista/apartamentovista2.jpg",
+        "/img-anuncios/Apartamento com vista/apartamentovista3.jpg",
+        "/img-anuncios/Apartamento com vista/apartamentovista4.jpg",
+      ],
+      owner: {
+        name: "Patricia Lima",
+        avatar: "/placeholder-user.jpg",
+        phone: "(11) 95555-5555",
+        memberSince: "2020",
+        rating: 4.7,
+        totalProperties: 4,
+      },
+      reviews: [
+        {
+          id: 1,
+          tenant: "Casal Rodrigues",
+          avatar: "/placeholder-user.jpg",
+          rating: 5,
+          date: "Dezembro 2023",
+          comment: "Vista incrível! Apartamento muito bem cuidado e proprietária atenciosa.",
+        },
+      ],
+    },
+    "6": {
+      id: "6",
+      title: "Casa com Quintal",
+      type: "Casa",
+      price: 2200,
+      location: {
+        neighborhood: "Vila Olímpia",
+        city: "São Paulo",
+        state: "SP",
+      },
+      details: {
+        bedrooms: 2,
+        bathrooms: 1,
+        area: 85,
+        parking: 1,
+      },
+      description:
+        "Casa aconchegante com quintal amplo, ideal para quem tem pets ou gosta de área externa. Localizada em rua tranquila.",
+      amenities: ["Quintal amplo", "Pet friendly", "Churrasqueira", "Jardim"],
+      images: [
+        "/img-anuncios/Casa com quintal/casaquintal1.png",
+        "/img-anuncios/Casa com quintal/casaquintal2.jpeg",
+        "/img-anuncios/Casa com quintal/casaquintal3.jpg",
+        "/img-anuncios/Casa com quintal/casaquintal4.jpg",
+        "/img-anuncios/Casa com quintal/casaquintal5.jpg",
+        "/img-anuncios/Casa com quintal/casaquintal6.jpg",
+        "/img-anuncios/Casa com quintal/casaquintal7.jpg",
+      ],
+      owner: {
+        name: "Fernando Costa",
+        avatar: "/placeholder-user.jpg",
+        phone: "(11) 94444-4444",
+        memberSince: "2021",
+        rating: 4.4,
+        totalProperties: 2,
+      },
+      reviews: [
+        {
+          id: 1,
+          tenant: "Família Almeida",
+          avatar: "/placeholder-user.jpg",
+          rating: 4,
+          date: "Outubro 2023",
+          comment: "Casa perfeita para nossa família e nossos pets. Quintal maravilhoso!",
+        },
+      ],
+    },
+    "7": {
+      id: "7",
+      title: "Apartamento Novo",
+      type: "Apartamento",
+      price: 1800,
+      location: {
+        neighborhood: "Bela Vista",
+        city: "São Paulo",
+        state: "SP",
+      },
+      details: {
+        bedrooms: 1,
+        bathrooms: 1,
+        area: 45,
+        parking: 1,
+      },
+      description:
+        "Apartamento completamente novo, nunca habitado. Acabamentos modernos e localização central com fácil acesso a transporte público.",
+      amenities: ["Nunca habitado", "Acabamentos novos", "Mobiliado", "Portaria"],
+      images: [
+        "/img-anuncios/Apartamento novo/apartamentonovo1.jpg",
+        "/img-anuncios/Apartamento novo/apartamentonovo2.jpg",
+        "/img-anuncios/Apartamento novo/apartamentonovo3.jpg",
+        "/img-anuncios/Apartamento novo/apartamentonovo4.jpeg",
+        "/img-anuncios/Apartamento novo/apartamentonovo5.jpg",
+      ],
+      owner: {
+        name: "Juliana Mendes",
+        avatar: "/placeholder-user.jpg",
+        phone: "(11) 93333-3333",
+        memberSince: "2023",
+        rating: 4.5,
+        totalProperties: 1,
+      },
+      reviews: [
+        {
+          id: 1,
+          tenant: "Rafael Santos",
+          avatar: "/placeholder-user.jpg",
+          rating: 5,
+          date: "Janeiro 2024",
+          comment: "Apartamento impecável! Tudo novo e muito bem localizado.",
+        },
+      ],
+    },
+    "8": {
+      id: "8",
+      title: "Cobertura Duplex",
+      type: "Cobertura",
+      price: 5500,
+      location: {
+        neighborhood: "Jardins",
+        city: "São Paulo",
+        state: "SP",
+      },
+      details: {
+        bedrooms: 4,
+        bathrooms: 3,
+        area: 180,
+        parking: 3,
+      },
+      description:
+        "Cobertura duplex de luxo com terraço privativo e vista privilegiada. Acabamentos de alto padrão em localização nobre.",
+      amenities: ["Terraço privativo", "Vista privilegiada", "Piscina privativa", "Sauna"],
+      images: [
+        "/img-anuncios/Duplex Cobertura/cobertura1.jpg",
+        "/img-anuncios/Duplex Cobertura/cobertura2.jpg",
+        "/img-anuncios/Duplex Cobertura/cobertura3.jpg",
+        "/img-anuncios/Duplex Cobertura/cobertura4.jpg",
+        "/img-anuncios/Duplex Cobertura/cobertura5.jpg",
+      ],
+      owner: {
+        name: "Eduardo Silveira",
+        avatar: "/placeholder-user.jpg",
+        phone: "(11) 92222-2222",
+        memberSince: "2019",
+        rating: 4.9,
+        totalProperties: 6,
+      },
+      reviews: [
+        {
+          id: 1,
+          tenant: "Empresário Silva",
+          avatar: "/placeholder-user.jpg",
+          rating: 5,
+          date: "Novembro 2023",
+          comment: "Cobertura excepcional! Luxo e conforto em todos os detalhes.",
+        },
+      ],
+    },
+  }
+
+  return properties[id as keyof typeof properties] || properties["1"]
 }
 
-export default function PropertyPage() {
+const propertyData = getPropertyData("1") // Você pode usar params.id aqui quando implementar roteamento dinâmico
+
+export default function PropertyPage({ params }: { params: { id: string } }) {
+  const propertyData = getPropertyData(params.id)
   const averageRating =
     propertyData.reviews.reduce((acc, review) => acc + review.rating, 0) / propertyData.reviews.length
 
